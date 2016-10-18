@@ -238,6 +238,7 @@ void queueListEnqueue(struct cirListDeque* q, TYPE item) {
    * This function should implement a queue enqueue using the circular
    * list-based deque q as the underlying data structure.
    */
+   addBackCirListDeque(q, item);
 }
 
 TYPE queueListDequeue(struct cirListDeque* q) {
@@ -246,7 +247,9 @@ TYPE queueListDequeue(struct cirListDeque* q) {
    * list-based deque q as the underlying data structure.  It should return
    * the dequeued value.
    */
-  return 0;
+   TYPE val = frontCirListDeque(q);
+   removeFrontCirListDeque(q);
+   return val;
 }
 
 TYPE queueListFront(struct cirListDeque* q) {
@@ -254,7 +257,7 @@ TYPE queueListFront(struct cirListDeque* q) {
    * This function should return the front element (i.e. the first to be
    * dequeued) of the queue represented by the circular list-based deque q.
    */
-  return 0;
+  return frontCirListDeque(q);
 }
 
 
@@ -268,6 +271,7 @@ void stackListPush(struct cirListDeque* q,TYPE item) {
    * This function should implement a stack push using the circular
    * list-based deque q as the underlying data structure.
    */
+   addFrontCirListDeque(q, item);
 }
 
 TYPE stackListPop(struct cirListDeque* q) {
@@ -276,7 +280,9 @@ TYPE stackListPop(struct cirListDeque* q) {
    * list-based deque q as the underlying data structure.  It should return
    * the popped value.
    */
-  return 0;
+   TYPE val = frontCirListDeque(q);
+   removeFrontCirListDeque(q);
+   return val;
 }
 
 TYPE stackListTop(struct cirListDeque* q) {
@@ -284,5 +290,5 @@ TYPE stackListTop(struct cirListDeque* q) {
    * This function should return the top element of the stack represented by
    * the circular list-based deque q.
    */
-  return 0;
+  return frontCirListDeque(q);
 }

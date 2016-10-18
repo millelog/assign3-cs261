@@ -15,6 +15,31 @@ struct Link* listInsertionSort(struct Link* head) {
    *
    * Return a pointer to the new head of the list.
    */
+   if( head==NULL || head->next == NULL)
+    return head;
+
+   struct Link* current = head->next;
+   struct Link* iter = head;
+
+   while(current != NULL){
+
+     iter = head;
+
+     while(iter->next != current){
+
+       if(iter->value > current->value){
+
+         TYPE temp = current->value;
+         current->value = iter->value;
+         iter->value = temp;
+
+       }
+       else{
+         iter = iter->next;
+       }
+     }
+     current = current->next;
+   }
   return head;
 
 }
@@ -31,7 +56,22 @@ struct Link* reverseList(struct Link* head) {
    *
    * Return a pointer to the new head of the list.
    */
-  return head;
+   if(head == NULL || head->next == NULL){
+     return head;
+   }
+
+   struct Link* prev = NULL;
+   struct Link* current = head;
+   struct Link* next = head->next;
+   while(next!=NULL){
+     current->next = prev;
+     prev = current;
+     current = next;
+     next = next->next;
+   }
+   current->next = prev;
+   head = current;
+   return head;
 
 }
 
@@ -49,6 +89,15 @@ struct Link* reverseListRecursive(struct Link* head){
    *
    * Return a pointer to the new head of the list.
    */
+   if(head == NULL || head->next==NULL)
+    return head;
+   struct Link* second = head->next;
+   head->next = NULL;
+   struct Link* list = reverseListRecursive(second);
+
+   second->next = head;
+   return list;
+
   return head;
 
 }
